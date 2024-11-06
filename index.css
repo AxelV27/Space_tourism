@@ -619,6 +619,27 @@ body {
     grid-area: tabs;
 }
 
+.dot-number button{
+    cursor: pointer;
+    border: 1px solid hsl(var(--clr-white) / 0.25);
+    border-radius: 50%;
+    aspect-ratio: 1;
+    width: 2.5rem;
+    padding: 0.5rem;
+    color: var(--clr-white);
+    background-color: transparent;
+}
+
+.dot-number button:hover {
+    background-color: hsl(var(--clr-white) / 0.3); /* Change background color on hover */
+}
+
+.dot-number button[aria-selected="true"] {
+    background-color: hsl(var(--clr-white) / 1); /* Change background for selected button */
+    border-color: hsl(var(--clr-white) / 1); /* Change border color for selected button */
+    color: hsl(var(--clr-dark)); /* Change text color for selected button */
+}
+
 .grid-container--technology > .technology-details {
     grid-area: content;
 }
@@ -647,6 +668,11 @@ body {
             'tabs'
             'image';
     }
+
+    .dot-number button{
+        width: 3.75rem
+    }
+
     
     
 }
@@ -698,17 +724,39 @@ body {
             '. tabs image .';
     }
 
-    .grid-container {
-        text-align: left;
-        column-gap: var(--container-gap, 2rem);
-        grid-template-columns: minmax(1rem, 1fr) repeat(2, minmax(0, 30rem)) minmax(1rem, 1fr);
+    .grid-container--crew > picture {
+        grid-column: span 2;
+        align-self: end;
+        max-width: 90%;
     }
 
     .grid-container--technology {
+        grid-template-columns: minmax(2rem, 1fr) min-content minmax(min-content, 3fr) minmax(0, 3fr) minmax(2rem, 1fr);
+        justify-items: start;
+        align-content: start;
         grid-template-areas: 
-            '. title title .'
-            '. content image .'
-            '. tabs image .';
+            '. title title title .'
+            '. tabs content image image ';
+    }
+
+    .grid-container--technology > picture {
+        grid-area: image;
+        max-width: 100%; /* Assurez-vous que l’image prenne tout l’espace disponible */
+        align-self: start; /* Permet à l'image d'être alignée correctement dans sa zone */
+    }
+
+    .grid-container--technology > .dot-number {
+        grid-area: tabs;
+        flex-direction: column;
+    }
+
+    .dot-number button{
+        width: clamp(3.75rem, 5vw, 5rem);
+    }
+
+    .grid-container--technology > .technology-details {
+        grid-area: content;
+        margin-left: 0;
     }
 
 }
